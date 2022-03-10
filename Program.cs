@@ -1,37 +1,38 @@
 ﻿using System;
 
-
-
 class Program
 {
-	public static void Main(string[] args)
-	{
-		RomanNumber r = new RomanNumber((ushort)3528), r1;
-		Console.WriteLine(r);
-		r = new RomanNumber((ushort)35);
-		r1 = new RomanNumber((ushort)14);
-		try
-		{
-			Console.WriteLine(r+r1);
-			Console.WriteLine(r-r1);
-			Console.WriteLine(r*r1);
-			Console.WriteLine(r/r1);
-		}
-		catch (Exception e)
-		{
-			Console.WriteLine(e);
-		}
-		Random rnd = new Random(DateTime.Now.Millisecond);
-		RomanNumber[] R = new RomanNumber[10];
-		for (int i = 0; i < 10; i++)
-		{
-			R[i] = new RomanNumber((ushort)(2 + 2 * rnd.Next(20)));
-		}
-		Array.Sort(R);
-		for (int i = 0; i < 10; i++)
-		{
-			Console.WriteLine(R[i]);
-		}
-		Console.ReadLine();
-	}
+    static void Main()
+    {
+        RomanNumber a = new RomanNumber(10);
+        RomanNumber b = new RomanNumber(2222);
+        RomanNumber c = new RomanNumber(5);
+        RomanNumber d = new RomanNumber(600);
+        RomanNumber e = new RomanNumber(162);
+
+        Console.WriteLine("A = 10 = X: " + a.ToString());
+        Console.WriteLine("B = 2222 = MMCCXXII: " + b.ToString());
+        Console.WriteLine("C = 5 = V: " + c.ToString());
+        Console.WriteLine("D = 600 = V : " + d.ToString());
+        Console.WriteLine("");
+
+        Console.WriteLine("B + C = 2227 = MMCCXXVII: " + RomanNumber.Add(b, c).ToString());
+        Console.WriteLine("B - C = 2217 = MMCCXVII: " + RomanNumber.Sub(b, c).ToString());
+        Console.WriteLine("D * C = 3000 = MMM: " + RomanNumber.Mul(d, c).ToString());
+        Console.WriteLine("D / C = 120 = CXX: " + RomanNumber.Div(d, c).ToString());
+        Console.WriteLine("");
+
+        Console.WriteLine("Сортировка");
+        RomanNumber[] numbers = { a, b, c, d };
+        Array.Sort(numbers);
+        foreach (RomanNumber number in numbers)
+        {
+            Console.WriteLine(number.ToString());
+        }
+        Console.WriteLine("");
+
+        Console.WriteLine("Копирование");
+        var f = (RomanNumber)c.Clone();
+        Console.WriteLine(f.ToString());
+    }
 }
